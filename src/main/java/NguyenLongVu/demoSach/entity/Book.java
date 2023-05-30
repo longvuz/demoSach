@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 import lombok.Data;
 import jakarta.validation.constraints.*;
+import NguyenLongVu.demoSach.validator.annotation.ValidUserId;
 @Data
 @Entity
 @Table(name="book")
@@ -31,4 +32,9 @@ public class Book {
     @JoinColumn(name="category_id")
     @ValidCategoryId
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ValidUserId
+    private User user;
 }

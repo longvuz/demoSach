@@ -19,9 +19,9 @@
             <td th:text="${category.id}"></td>
             <td th:text="${category.name}"></td>
             <td>
-            <a th:href="@{/categories/edit/{id} (id=${category.id})}" class="btn btn-primary">Edit</a>
+            <a th:href="@{/categories/edit/{id} (id=${category.id})}" class="btn btn-primary">Sửa</a>
             <a th:href="@{/categories/delete/{id} (id=${category.id})}"
-               onclick="return confirm ('Are you sure?')" class="btn btn-danger">Delete</a>
+               onclick="return confirm ('Xác nhận xóa Thể Loại này ?')" class="btn btn-danger">Xóa</a>
             </td>
 
 
