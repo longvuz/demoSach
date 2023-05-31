@@ -25,10 +25,8 @@
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
 
-                    <li class="nav-item"> <a class="nav-link" href=/books>Danh Sách Sách</a></li>
-                    <li class="nav-item"> <a class="nav-link" href=/books/add>Thêm Sách</a></li>
-                    <li class="nav-item"> <a class="nav-link" href=/categories>Danh Sách Thể Loại</a></li>
-                    <li class="nav-item"> <a class="nav-link" href=/categories/add>Thêm Thể Loại</a></li>
+                    <li class="nav-item"> <a class="nav-link" href=/books>Sách</a></li>
+                    <li class="nav-item"> <a class="nav-link" href=/categories>Thể Loại</a></li>
 
                     <li sec:authorize="isAuthenticated()">
                         <form th:action="@{/logout}" method="post">

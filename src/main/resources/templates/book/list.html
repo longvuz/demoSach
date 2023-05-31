@@ -9,7 +9,8 @@
 <th:block th:replace="layout :: header"></th:block>
 <div class="container">
     <h1 th:text=${title}></h1>
-        <table class="table">
+    <a class="btn btn-outline-success" href="/books/add">Thêm Sách</a>
+    <table class="table">
             <tr>
                 <th>ID</th>
                 <th>Tên Sách</th>
@@ -26,7 +27,7 @@
                 <td th:text="${book.category.name}"></td><td>
                     <a th:href="@{/books/edit/{id} (id=${book.id})}" class="btn btn-primary">Sửa</a>
                     <a th:href="@{/books/delete/{id} (id=${book.id})}"
-                        onclick="return confirm ('Are you sure?')" class="btn btn-danger">Xóa</a>
+                        onclick="return confirm ('Xác nhận xóa sách  này ?')" class="btn btn-danger">Xóa</a>
                 </td>
 
             </tr>
