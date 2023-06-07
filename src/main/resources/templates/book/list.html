@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>My Book List</title>
@@ -8,32 +10,54 @@
 <body>
 <th:block th:replace="layout :: header"></th:block>
 <div class="container">
-    <h1 th:text=${title}></h1>
-    <a class="btn btn-outline-success" href="/books/add">Thêm Sách</a>
+    <h1 th:text="${title}"></h1>
     <table class="table">
-            <tr>
-                <th>ID</th>
-                <th>Tên Sách</th>
-                <th>Tác Giả</th>
-                <th>Giá Tiền</th>
-                <th>Thể Loại</th>
-                <th>Chức Năng</th>
-            </tr>
-            <tr th:each="book : ${books}">
-                <td th:text="${book.id}"></td>
-                <td th:text="${book.title}"></td>
-                <td th:text="${book.author}"></td>
-                <td th:text="${book.price}"></td>
-                <td th:text="${book.category.name}"></td><td>
-                    <a th:href="@{/books/edit/{id} (id=${book.id})}" class="btn btn-primary">Sửa</a>
-                    <a th:href="@{/books/delete/{id} (id=${book.id})}"
-                        onclick="return confirm ('Xác nhận xóa sách  này ?')" class="btn btn-danger">Xóa</a>
-                </td>
+        <tr>
+            <th>ID</th>
+            <th>Tiêu đề</th>
+            <th>Tác giả</th>
+            <th>Giá tiền</th>
+            <th>Thể loại</th>
+            <th sec:authorize="hasAnyAuthority('ADMIN')">Chức năng</th>
+        </tr>
+        <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/books/add}" class="btn btn-outline-primary">Thêm Sách</a>
 
-            </tr>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.price}"></td>
+            <td th:text="${book.category.name}"></td>
+            <td sec:authorize="hasAnyAuthority('ADMIN')">
+                <a class="btn btn-primary"
+                   th:href="@{/books/edit/{id}(id=${book.getId()})}">Sửa</a>
+                <a class="btn btn-danger"
+                   th:href="@{/books/delete/{id}(id=${book.getId()})}"
+                   onclick="return confirm('Xác nhận xáo sách này?')">Xóa</a>
+            </td>
+
+
+        </tr>
     </table>
 </div>
-
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:inline="javascript"></script>
+<!--    function deleteBook(link) {-->
+<!--        if (confirm('Are you sure?')) {-->
+<!--        $.ajax({-->
+<!--            url: $(link).attr('href'),-->
+<!--            type: 'DELETE',-->
+<!--            Success: result => {-->
+<!--                if (!result.success) {-->
+<!--                    alert(result.message);-->
+<!--                } else {-->
+<!--                    $(link).parent().parent().remove();-->
+<!--                }-->
+<!--        });-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 <th:block th:replace="layout :: footer"></th:block>
 </body>
 </html>
+

@@ -8,7 +8,7 @@
 <body>
 <th:block th:replace="layout :: header"></th:block>
 <div class="container">
-    <h1>Edit Book</h1>
+    <h1>Chỉnh sửa sách</h1>
     <form th:action="@{/books/edit}" th:object="${book}" method="post">
         <input class="form-control" type="hidden" th:field="*{id}">
         <div class="col-6 mb-3">
@@ -31,10 +31,11 @@
             </select>
 
         </div>
-        <input type="submit" class="btn btn-primary" value="Save">
+        <input type="submit" class="btn btn-outline-primary" value="OK">
+        <a th:href="@{/books}" class="btn btn-outline-success">Về Danh Sách</a>
     </form>
     <br>
-    <a th:href="@{/books}">Back to List</a>
+    <a th:href="@{/books}"></a>
 </div>
 <th:block th:replace="layout :: footer"></th:block>
 </body>

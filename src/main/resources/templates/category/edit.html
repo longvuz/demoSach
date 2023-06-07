@@ -15,10 +15,10 @@
             <label class="form-label" for="name">Tên Thể Loại:</label>
             <input class="form-control" type="text" th:field="*{name}" id="name">
         </div>
-        <input type="submit" class="btn btn-primary" value="Save">
+        <input type="submit" class="btn btn-outline-primary" value="OK">
+        <a th:href="@{/categories}" class="btn btn-outline-success">Về Danh Sách</a>
+
     </form>
-    <br>
-    <a th:href="@{/categories}" class="btn btn-default">Về Danh Sách</a>
 </div>
 <th:block th:replace="layout :: footer"></th:block>
 </body>

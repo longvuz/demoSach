@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Category List</title>
+    <title>My Book List</title>
     <th:block th:replace="layout :: link-css"></th:block>
 </head>
 <body>
 <th:block th:replace="layout :: header"></th:block>
 <div class="container">
     <h1 th:text=${title}></h1>
-    <a class="btn btn-outline-success" href="/categories/add">Thêm Thể Loại</a>
+    <a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-outline-primary" href="/categories/add">Thêm Thể Loại</a>
     <table class="table">
         <tr>
             <th>ID</th>
             <th>Tên Thể Loại</th>
-            <th>Chức Năng</th>
+            <th sec:authorize="hasAnyAuthority('ADMIN')">Chức Năng</th>
         </tr>
         <tr th:each="category : ${categories}">
             <td th:text="${category.id}"></td>
             <td th:text="${category.name}"></td>
-            <td>
+            <td sec:authorize="hasAnyAuthority('ADMIN')">
             <a th:href="@{/categories/edit/{id} (id=${category.id})}" class="btn btn-primary">Sửa</a>
             <a th:href="@{/categories/delete/{id} (id=${category.id})}"
                onclick="return confirm ('Xác nhận xóa Thể Loại này ?')" class="btn btn-danger">Xóa</a>

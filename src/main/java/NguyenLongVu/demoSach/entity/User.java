@@ -31,6 +31,13 @@ public class User {
     @Size(max = 50, message = "Họ và tên phải dưới 50 kí tự")
     @NotBlank
     private String name;
+
+    @ManyToMany
+    @JoinTable(name="user_role",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Book> books = new ArrayList<>();
 }
